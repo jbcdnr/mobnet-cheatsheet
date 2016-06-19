@@ -150,8 +150,10 @@ Given that $S$ is the output rate and $G$ is the input rate
 
 \bf{CSMA persistent.} \emph{1-persistent} send when idle, back off if collision, \emph{non-persistent} transmit if idle else back off, \emph{$p$-persistent} if busy re sense else if idle transmit with proba $p$, re sense after random delay with proba $1-p$
 
-
-\includegraphics[width=\linewidth]{figures/throughput.png}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/throughput.png}
+\end{figure}
 
 \bf{MPTCP.} use Dseq and Dack for real sequence number instead of seq tag to avoid middle box drop some packages
 
