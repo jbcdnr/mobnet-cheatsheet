@@ -91,17 +91,10 @@
 
 \section{Definitions}
 
-\define{CSMA/CD}{Carrier Sense Multiple Access with Collision Detection}
-\define{CSMA/CA}{Carrier Sense Multiple Access with Collision Avoidance}
-\define{SDMA}{Space Division Multiple Access}
-\define{TDMA}{Time Division Multiple Access}
-\define{FDMA}{Frequency Division Multiple Access}
-\define{CDMA}{Code Division Multiple Access}
 \define{DAMA}{Demand Assigned Multiple Access}
 \define{MACA}{Multiple Access with Collision Avoidance}
 \define{RTS}{request to send}
 \define{CTS}{clear to send}
-\define{BSS}{Basic Service Set}
 \define{DCF}{distributed coordination function}
 \define{SNR}{Signal to noise ratio}
 \define{ISI}{Inter symbol interference}
@@ -131,7 +124,7 @@
 
 \bf{Delays rule of thumb.} Wait DIFS without activity before RTS, then wait SIFS between packages
 
-\bf{802.11 MAC layer CSMA/CA.} The following mechanism is called \emph{exponential back off}. If the channel is busy for the source, a back off time (measured in slot times) is chosen randomly in the interval $[0,CW)$. This timer is decreased by one as long as the channel is sensed idle for a DIFS. The timer stops when the channel is busy and resumes when the channel is idle again for at least a DIFS period. $CW$ is an integer whose range is determined by the PHY layer characteristics: $CW_{min}$ and $CW_{max}$. $CW$ is doubled after each unsuccessful transmission, up to the maximum value equal to $CW_{max} + 1$. When the back off timer reaches zero, the source transmits the data packet. The ACK is transmitted by the receiver immediately after a period of duration equal to SIFS. When a data packet is transmitted, all other stations hearing this transmission adjust their NAV. The NAV maintains a prediction of future traffic on the medium based on the duration information that is announced in Data frames (or RTS/CTS). In addition, whenever a node detects an erroneous frame, the node defers its transmission by a fixed duration indicated by EIFS. $CW$ is doubled for each collision (failed transmission). In case of a successful (i.e. collision-free) transmission, the transmitting station brings the value of its contention window back to $CW_{min}$. 
+\bf{802.11 MAC layer CSMA/CA.} The following mechanism is called \emph{exponential back off}. If the channel is busy for the source, a back off time (measured in slot times) is chosen randomly in the interval $[0,CW)$. This timer is decreased by one as long as the channel is sensed idle for a DIFS. The timer stops when the channel is busy and resumes when the channel is idle again for at least a DIFS period. $CW$ is an integer whose range is determined by the PHY layer characteristics: $CW_{min}$ and $CW_{max}$. $CW$ is doubled after each unsuccessful transmission, up to the maximum value equal to $CW_{max} + 1$. When the back off timer reaches zero, the source transmits the data packet. The ACK is transmitted by the receiver immediately after a period of duration equal to SIFS. When a data packet is transmitted, all other stations hearing this transmission adjust their NAV. The NAV maintains a prediction of future traffic on the medium based on the duration information that is announced in Data frames (or RTS/CTS). In addition, whenever a node detects an erroneous frame, the node defers its transmission by a fixed duration indicated by EIFS. $CW$ is doubled for each collision (failed transmission). In case of a successful (i.e. collision-free) transmission, the transmitting station brings the value of its contention window back to $CW_{min}$.
 
 
 Given A - B - C configuration
@@ -146,7 +139,7 @@ Given A - B - C configuration
 
 \section{TCP performance}
 
-\bf{Aloha Protocol.} Send package and wait for ACK, if timeout $2 t_{prop}$ then back off time $B$ and retry. 
+\bf{Aloha Protocol.} Send package and wait for ACK, if timeout $2 t_{prop}$ then back off time $B$ and retry.
 
 
 Given that $S$ is the output rate and $G$ is the input rate
@@ -164,7 +157,7 @@ Given that $S$ is the output rate and $G$ is the input rate
 
 \bf{MPTCP.} use Dseq and Dack for real sequence number instead of seq tag to avoid middle box drop some packages
 
-\bf{MPTCP Congestion control.} When receive ACK for flow $r$, increase $w_r$ by 
+\bf{MPTCP Congestion control.} When receive ACK for flow $r$, increase $w_r$ by
 \[
   \min_{S\subseteq R: r\in S} \frac{\max_{s\in S}w_s / RTT_s^2}{\l( \sum_{s\in w_s}/ RTT_s \r)^2}
 \]
@@ -174,7 +167,7 @@ otherwise divide window size by 2
 
 % \includegraphics[width=\linewidth]{figures/bianchi-model.png}
 
-Bianchi uses a two-dimensional Markov chain of m + 1 back off stages in which each stage represents the back off time counter of a node. 
+Bianchi uses a two-dimensional Markov chain of m + 1 back off stages in which each stage represents the back off time counter of a node.
 
 $p$ is the probability that, in a slot time, at least one of the $N-1$ remaining stations transmits as well $p=1-(1-\pi)^{N-1}$
 
@@ -192,8 +185,7 @@ Markov chain stationary distribution:
   \pi = \frac 2 {1+W_{min} + p W_{min} \sum_{k=0}^{m-1}(2p)^k}
 \]
 
-
-\bf{Saturation throughput.} 
+\bf{Saturation throughput.}
 $
   \tau = \frac{\E{\text{info transmitted in ST}}}{\E{\text{duration ST}}}$
 
@@ -238,9 +230,9 @@ with $P_{tr} = 1 - (1-\pi)^N$ the proba there is $\geq 1$ transmission in a ST, 
 
 \textbf{ERP} $P_T \cdot G_T$
 
-\bf{Thermal Noise} in a bandwidth of 1Hz $N_0 = kT (W)$ 
+\bf{Thermal Noise} in a bandwidth of 1Hz $N_0 = kT (W)$
 
-\bf{Thermal Noise} in a bandwidth of BHz $N_0 = BkT (W)$ 
+\bf{Thermal Noise} in a bandwidth of BHz $N_0 = BkT (W)$
 
 \bf{Boltzmann constant} $ k = 1.3803 \cdot 10^{-23} J\cdot K^{-1}$
 
