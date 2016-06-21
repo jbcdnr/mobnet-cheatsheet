@@ -262,19 +262,21 @@ where $R$ is the communication bit rate, and $T$ the temperature of the receiver
 
 \bf{Radio capacity} $m = C/N$
 
-\bf{Hexagon model} $Q=D/R = \sqrt{3N}$ where $D$ is the distance between two cells of same channel, $R$ the radius of a cell
+\bf{Hexagon model} $Q=D/R = \sqrt{3N}$ where $D=\sqrt{3}R$ is the distance between two cells of same channel, $R$ the radius of a cell
 
-\bf{Hexagon cell count} $N=(i+j)^2-ij, (i,j) \in \bN^2$ that is $1,3,4,7,9,12,13,16...$
+\bf{Hexagon cell count} $N=i^2+ij+j^2, (i,j) \in \bN^2$ that is $1,3,4,7,9,12,13,16...$
 
 \section{Privacy}
 
 Poisson distribution assumption
 \[
-  \P{k \text{ in } t \text{ range}} = \frac{t^k}{k!}e^{-t} 
+  \P{k \text{ in } t \text{ range}} = \frac{t^k}{k!}e^{-t}
 \]
 
 
 Hungarian algorithm (complexity: $O(n^4)$) on a weighted bipartite graph
+
+\textbf{Tracking game}: Adversary picks vehicle $v$ in observed zone, tracks until enters mix zone at port $s$. With port $j$ and exiting time $t$, decide for $v'$ with max $q_{jt} = p_{sj}d_{sj}(t)$, with $p_{sj} = P\{\text{exiting at } j | \text{entering at } s\}$ and $d_{sj}(t)$ the prob that the time elapsed between entering $s$ and exiting $j$ is $t$.
 
 \section{Security}
 
@@ -284,7 +286,7 @@ Hungarian algorithm (complexity: $O(n^4)$) on a weighted bipartite graph
 
 \bf{SIM card.} Contains IMSI, PIN, TMSI, $K_i$ user's secret key, $K_c$ cyphering key
 
-\bf{WEP.} STA needs to authenticate itself to the AP based on a simple challenge-response protocol, use RC4 protocol, need IV. Two kinds of keys: default key, key mapping keys (better). Flaws: authentication is one-way only, AP is not authenticated to STA, the same shared secret key is used for authentication and encryption, no session key is established during authentication (replay possible)
+\bf{WEP.} STA needs to authenticate itself to the AP based on a simple challenge-response protocol, use RC4 protocol, need IV. Two kinds of keys: default key, key mapping keys (better). \emph{Default keys}: same for group, when member leaves, change key.  Impossible to do simultaneously, so support multiple keys (one active + others). Flaws: authentication is one-way only, AP is not authenticated to STA, the same shared secret key is used for authentication and encryption, no session key is established during authentication (replay possible).
 
 \section{Mobile TCP}
 
